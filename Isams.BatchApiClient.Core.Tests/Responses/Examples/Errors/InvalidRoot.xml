@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Message>
+  <MessageId>UnhandledException</MessageId>
+  <MessageName>UnhandledException</MessageName>
+  <Title>Unknown Error</Title>
+  <Description>Data at the root level is invalid. Line 1, position 1.</Description>
+</Message>

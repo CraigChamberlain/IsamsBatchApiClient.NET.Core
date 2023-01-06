@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Message>
+  <MessageId>InvalidApiKey</MessageId>
+  <MessageName>InvalidApiKey</MessageName>
+  <Title>Invalid API Key</Title>
+  <Description>The API key is invalid.
+Please contact your iSAMS administrator.</Description>
+</Message>

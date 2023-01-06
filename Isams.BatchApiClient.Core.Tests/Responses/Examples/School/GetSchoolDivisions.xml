@@ -1,0 +1,26 @@
+<iSAMS>
+  <SchoolManager>
+    <SchoolDivisions>
+      <SchoolDivision Id="1">
+        <Author Legacy="True">ADMIN379195924992lh</Author>
+        <Name>Pre Prep School</Name>
+        <Code>PP</Code>
+        <LastUpdated>2021-04-19T10:11:53</LastUpdated>
+        <Years>
+          <Year Id="64" YearId="-2">
+            <NationalCurriculumYear Legacy="True">-2</NationalCurriculumYear>
+            <Author Legacy="True"/>
+          </Year>
+          <Year Id="65" YearId="-1">
+            <NationalCurriculumYear Legacy="True">-1</NationalCurriculumYear>
+            <Author Legacy="True"/>
+          </Year>
+          <Year Id="66" YearId="0">
+            <NationalCurriculumYear Legacy="True">0</NationalCurriculumYear>
+            <Author Legacy="True"/>
+          </Year>
+        </Years>
+      </SchoolDivision>
+    </SchoolDivisions>
+  </SchoolManager>
+</iSAMS>

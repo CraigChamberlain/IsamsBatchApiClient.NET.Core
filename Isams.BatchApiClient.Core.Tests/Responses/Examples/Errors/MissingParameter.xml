@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Message>
+  <MessageId>MissingParameter</MessageId>
+  <MessageName>MissingParameter</MessageName>
+  <Title>Missing Field: apiKey</Title>
+  <Description>A required field "apiKey" was not supplied or was in an incorrect format.</Description>
+</Message>

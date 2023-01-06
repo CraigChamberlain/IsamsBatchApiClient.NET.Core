@@ -1,0 +1,18 @@
+<iSAMS>
+  <PupilManager>
+    <Pupils>
+      <Pupil Id="1000" AuthorId="334" PersonGuid="B465AF82-FD3C-4D97-AED5-EEF2DBF289EA">
+        <Author Legacy="True">richardsalamandersoftcouk191138978684800</Author>
+        <SchoolId Legacy="True">999100898401</SchoolId>
+        <Status>Applicant</Status>
+        <Siblings>
+          <Sibling PupilId="154" AuthorId="1" PersonGuid="B465AF82-FD3C-4D97-AED5-EEF2DBF289EA">
+            <Author Legacy="True">ADMIN379195924992lh</Author>
+            <SchoolId Legacy="True">238461885814</SchoolId>
+            <Status>Current</Status>
+          </Sibling>
+        </Siblings>
+      </Pupil>
+    </Pupils>
+  </PupilManager>
+</iSAMS>

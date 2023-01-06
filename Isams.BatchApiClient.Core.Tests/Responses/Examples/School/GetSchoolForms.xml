@@ -1,0 +1,18 @@
+<iSAMS>
+  <SchoolManager>
+    <Forms>
+      <Form Id="Y0-A" TutorId="5" SecondAssistantTutorId="4" YearId="0" RoomId="31" AuthorId="1">
+        <Tutor Legacy="True">EEW12070597600217613</Tutor>
+        <AssistantFormTutor Legacy="True"/>
+        <SecondAssistantFormTutor Legacy="True">WHM25203947475782413</SecondAssistantFormTutor>
+        <NationalCurriculumYear Legacy="True">0</NationalCurriculumYear>
+        <RoomId Legacy="True">31</RoomId>
+        <Author Legacy="True">ADMIN379195924992lh</Author>
+        <Form>Y0-A</Form>
+        <EmailAddress>Y0-A@DefaultSchool.com</EmailAddress>
+        <Website>www.DefaultSchool.com/Y0-A</Website>
+        <LastUpdated>2016-08-16T12:00:00</LastUpdated>
+      </Form>
+    </Forms>
+  </SchoolManager>
+</iSAMS>

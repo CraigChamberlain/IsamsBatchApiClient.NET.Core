@@ -1,0 +1,19 @@
+<iSAMS>
+  <PupilManager>
+    <CurrentPupils>
+      <Pupil Id="2538" PersonGuid="29981916-C5A7-485E-AD04-1F3A568583EE">
+        <SchoolCode>PRE0002339SUF</SchoolCode>
+        <SchoolId>145629077495</SchoolId>
+        <Title/>
+        <Forename>Brian</Forename>
+        <Surname>Eno</Surname>
+        <Middlename>Peter George</Middlename>
+        <Initials>B P G</Initials>
+        <Preferredname>Brian</Preferredname>
+        <Fullname>Brian Eno</Fullname>
+        <Gender>M</Gender>
+        <DOB>1948-05-15T00:00:00</DOB>
+      </Pupil>
+    </CurrentPupils>
+  </PupilManager>
+</iSAMS>

@@ -1,0 +1,21 @@
+<iSAMS>
+  <SchoolManager>
+    <BoardingHouses>
+      <House Id="1" HouseMasterId="376" AssistantHouseMasterId="6">
+        <HouseMaster Legacy="True">Steven2061954506630401</HouseMaster>
+        <AssistantHouseMaster Legacy="True">EHP22113459948300803</AssistantHouseMaster>
+        <Name>Boarding House A</Name>
+        <Code>BHA</Code>
+        <Type>Boarding</Type>
+        <Address1>Boarding House Street 1</Address1>
+        <Town>Boarding House Town</Town>
+        <County>Cambridgeshire</County>
+        <Postcode>BH1 1AH</Postcode>
+        <Telephone>01357 871428</Telephone>
+        <Fax>01357 871420</Fax>
+        <PrimaryEmail>BHA@DefaultSchool.com</PrimaryEmail>
+        <Website>www.DefaultSchool.com/BHA</Website>
+      </House>
+    </BoardingHouses>
+  </SchoolManager>
+</iSAMS>

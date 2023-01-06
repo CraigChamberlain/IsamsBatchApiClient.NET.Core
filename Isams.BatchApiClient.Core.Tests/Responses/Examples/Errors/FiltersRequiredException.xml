@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Message>
+  <MessageId>FiltersRequiredException</MessageId>
+  <MessageName>FiltersRequiredException</MessageName>
+  <Title>Filters Required</Title>
+  <Description>Method "SchoolReports - GetReports" requires at least one filter. No filters have been supplied.</Description>
+</Message>

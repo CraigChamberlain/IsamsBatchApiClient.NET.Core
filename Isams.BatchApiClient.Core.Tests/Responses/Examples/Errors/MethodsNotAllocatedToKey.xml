@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Message>
+  <MessageId>MethodsNotAllocatedToKeyException</MessageId>
+  <MessageName>MethodsNotAllocatedToKeyException</MessageName>
+  <Title>Methods Not Allocated To Key</Title>
+  <Description>The following methods specified in the MethodsToRun filter are not allocated to the requested key: schoolreports_getrecords</Description>
+</Message>

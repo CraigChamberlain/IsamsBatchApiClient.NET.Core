@@ -1,0 +1,17 @@
+<iSAMS>
+  <SchoolManager>
+    <Years>
+      <Year Id="-2" AuthorId="1" TutorId="376">
+        <NationalCurriculumYear Legacy="True">-2</NationalCurriculumYear>
+        <Tutor Legacy="True">Steven2061954506630401</Tutor>
+        <AssistantTutor Legacy="True"/>
+        <Author Legacy="True">ADMIN379195924992lh</Author>
+        <Name>Nursery</Name>
+        <Code>N</Code>
+        <Email>year-n@isams.com</Email>
+        <Website>https://www.isams.com/years/year</Website>
+        <LastUpdated>2021-04-19T10:11:53</LastUpdated>
+      </Year>
+    </Years>
+  </SchoolManager>
+</iSAMS>

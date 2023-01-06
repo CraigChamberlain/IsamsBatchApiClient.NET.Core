@@ -1,0 +1,34 @@
+<iSAMS>
+  <HRManager>
+    <CurrentStaff>
+      <StaffMember Id="380" PersonId="3041" PersonGuid="D2481057-A441-4287-9B2A-0DF82C52EA97">
+        <Initials>&#x20;</Initials>
+        <UserCode>JXB28529081319808003</UserCode>
+        <Title/>
+        <Forename>&#x20;</Forename>
+        <MiddleNames/>
+        <Surname>&#x20;</Surname>
+        <FullName>  &#x20;</FullName>
+        <NameInitials/>
+        <PreferredName>test</PreferredName>
+        <Salutation> &#x20;</Salutation>
+        <Gender/>
+        <SchoolEmailAddress/>
+        <SchoolMobileNumber/>
+        <PersonalMobileNumber/>
+        <TeachingStaff>1</TeachingStaff>
+        <Divisions>
+          <Division Id="1">
+            <Name>Pre Prep School</Name>
+          </Division>
+          <Division Id="2">
+            <Name>Prep School</Name>
+          </Division>
+          <Division Id="3">
+            <Name>Senior School</Name>
+          </Division>
+        </Divisions>
+      </StaffMember>
+    </CurrentStaff>
+  </HRManager>
+</iSAMS>

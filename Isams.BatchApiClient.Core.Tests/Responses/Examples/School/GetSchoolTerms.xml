@@ -1,0 +1,14 @@
+<iSAMS>
+  <SchoolManager>
+    <Terms>
+      <Term Id="1" AuthorId="1">
+        <Author Legacy="True">ADMIN379195924992lh</Author>
+        <SchoolYear>2008</SchoolYear>
+        <Name>Autumn</Name>
+        <StartDate>2008-09-01T00:00:00</StartDate>
+        <FinishDate>2008-12-19T00:00:00</FinishDate>
+        <LastUpdated>2016-08-16T12:00:00</LastUpdated>
+      </Term>
+    </Terms>
+  </SchoolManager>
+</iSAMS>

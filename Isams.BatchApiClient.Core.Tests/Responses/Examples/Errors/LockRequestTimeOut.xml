@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Message>
+  <MessageId>UnhandledException</MessageId>
+  <MessageName>UnhandledException</MessageName>
+  <Title>Unknown Error</Title>
+  <Description>Lock request time out period exceeded.  The statement has been terminated.</Description>
+</Message>

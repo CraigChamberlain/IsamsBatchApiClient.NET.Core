@@ -1,0 +1,22 @@
+<iSAMS>
+  <SchoolManager>
+    <AcademicHouses>
+      <House Id="2" HouseMasterId="4" AssistantHouseMasterId="7">
+        <HouseMaster Legacy="True">WHM25203947475782413</HouseMaster>
+        <AssistantHouseMaster Legacy="True">PDP17478217503571203</AssistantHouseMaster>
+        <Name>Academic House B</Name>
+        <Code>AHB</Code>
+        <Type>Academic</Type>
+        <Sex>F</Sex>
+        <Address1>Academic House Street 2</Address1>
+        <Town>Academic House Town</Town>
+        <County>Bedfordshire</County>
+        <Postcode>AH2 2AH</Postcode>
+        <Telephone>01871 742857</Telephone>
+        <Fax>01871 742850</Fax>
+        <PrimaryEmail>AHB@DefaultSchool.com</PrimaryEmail>
+        <Website>www.DefaultSchool.com/AHB</Website>
+      </House>
+    </AcademicHouses>
+  </SchoolManager>
+</iSAMS>
