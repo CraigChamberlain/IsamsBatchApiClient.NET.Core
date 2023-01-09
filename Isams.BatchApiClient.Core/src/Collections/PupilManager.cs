@@ -19,13 +19,13 @@ namespace Isams.BatchApiClient.Core.Collections
         /// <summary>
         /// A collection of students' siblings which are managed through the Student Manager module [iSAMS_STUDENTMANAGEMENT].
         /// </summary>
-        // TODO problem, double use of pupil!!
+        // TODO problem, passports on the same namespace!!
         [XmlArrayItem(
                 ElementName = "Pupil",
                 IsNullable = true,
                 Type = typeof(Model.PupilManager.SiblingsPupil))]
         [XmlArray(ElementName = "Pupils")]
-        public Model.PupilManager.SiblingsPupil[] SiblingsAndPassports { get; set; }
+        public Model.PupilManager.SiblingsPupil[] Siblings { get; set; }
 
     }
 }
