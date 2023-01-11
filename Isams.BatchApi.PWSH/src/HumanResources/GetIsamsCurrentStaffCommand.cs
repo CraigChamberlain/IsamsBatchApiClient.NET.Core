@@ -4,9 +4,9 @@ using System.Management.Automation;
 
 namespace Isams.BatchApi.PWSH.Commands
 {
-    [Cmdlet(VerbsCommon.Get, "CurrentStaff")]
+    [Cmdlet(VerbsCommon.Get, "IsamsCurrentStaff")]
     [OutputType(typeof(StaffMember))]
-    public class GetCurrentStaffCommand : GetIsamsCommand
+    public class GetIsamsCurrentStaffCommand : GetIsamsCommand
     {
         protected override Method Method => Method.HumanResources_GetCurrentStaff;
         protected override void ProcessRecord()

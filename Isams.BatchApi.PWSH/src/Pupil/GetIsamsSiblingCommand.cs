@@ -4,9 +4,9 @@ using System.Management.Automation;
 
 namespace Isams.BatchApi.PWSH.Commands
 {
-    [Cmdlet(VerbsCommon.Get, "Siblings")]
+    [Cmdlet(VerbsCommon.Get, "IsamsSibling")]
     [OutputType(typeof(SiblingsPupil))]
-    public class GetSiblingCommand : GetIsamsCommand
+    public class GetIsamsSiblingCommand : GetIsamsCommand
     {
         protected override Method Method => Method.Pupil_GetSiblings;
         protected override void ProcessRecord()

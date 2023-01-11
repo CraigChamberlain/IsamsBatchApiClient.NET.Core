@@ -4,9 +4,9 @@ using System.Management.Automation;
 
 namespace Isams.BatchApi.PWSH.Commands
 {
-    [Cmdlet(VerbsCommon.Get, "PastoralTutors")]
+    [Cmdlet(VerbsCommon.Get, "IsamsPastoralTutor")]
     [OutputType(typeof(StaffMemberId))]
-    public class GetPastoralTutorsCommand : GetIsamsCommand
+    public class GetIsamsPastoralTutorCommand : GetIsamsCommand
     {
         protected override Method Method => Method.School_GetPastoralTutors;
         protected override void ProcessRecord()

@@ -16,19 +16,25 @@ Install from the PowerShell Gallery:
 
 Use like this:
 
-    Get-SchoolTerms "40CA2D09-3BC4-4D5E-9274-24CAEDE8986A" "https://domain.isams.cloud" 
+    Get-IsamsCurrentPupil -ApiKey "0A1C996B-8E74-4388-A3C4-8DA1E30ADA57"  -IsamsInstance "https://school.isams.cloud"  
 
-Endpoints in this current free edition are limited to:
-  - Get-AcademicHouses
-  - Get-AllYears
-  - Get-BoardingHouses
-  - Get-CurrentPupils
-  - Get-CurrentStaff
-  - Get-PastoralTutors
-  - Get-SchoolDivisions
-  - Get-SchoolForms
-  - Get-SchoolTerms
-  - Get-Siblings
+## Endpoints in this current free edition are limited to:
+  
+### Human Resources
+  - Get-IsamsCurrentStaff
+
+### Pupil
+  - Get-IsamsCurrentPupil
+  - Get-IsamsSibling
+
+### School
+  - Get-IsamsAcademicHouse
+  - Get-IsamsSchoolYear
+  - Get-IsamsBoardingHouse
+  - Get-IsamsSchoolForm
+  - Get-IsamsPastoralTutor
+  - Get-IsamsSchoolDivision
+  - Get-IsamsSchoolTerm
 
 ## Road-Map
 

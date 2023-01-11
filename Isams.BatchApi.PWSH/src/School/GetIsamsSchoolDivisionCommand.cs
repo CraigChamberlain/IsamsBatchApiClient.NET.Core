@@ -4,9 +4,9 @@ using System.Management.Automation;
 
 namespace Isams.BatchApi.PWSH.Commands
 {
-    [Cmdlet(VerbsCommon.Get, "SchoolDivisions")]
+    [Cmdlet(VerbsCommon.Get, "IsamsSchoolDivision")]
     [OutputType(typeof(SchoolDivision))]
-    public class GetSchoolDivisionsCommand : GetIsamsCommand
+    public class GetIsamsSchoolDivisionCommand : GetIsamsCommand
     {
         protected override Method Method => Method.School_GetSchoolDivisions;
         protected override void ProcessRecord()

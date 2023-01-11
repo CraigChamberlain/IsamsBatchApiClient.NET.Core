@@ -4,14 +4,14 @@ using System.Management.Automation;
 
 namespace Isams.BatchApi.PWSH.Commands
 {
-    [Cmdlet(VerbsCommon.Get, "BoardingHouses")]
-    [OutputType(typeof(House))]
-    public class GetBoardingHousesCommand : GetIsamsCommand
+    [Cmdlet(VerbsCommon.Get, "IsamsSchoolYear")]
+    [OutputType(typeof(Year))]
+    public class GetIsamsSchoolYearCommand : GetIsamsCommand
     {
-        protected override Method Method => Method.School_GetBoardingHouses;
+        protected override Method Method => Method.School_GetAllYears;
         protected override void ProcessRecord()
         {   
-            WriteObject(_isams.SchoolManager.BoardingHouses, true);
+            WriteObject(_isams.SchoolManager.Years, true);
             base.ProcessRecord();
         }
     }

@@ -4,9 +4,9 @@ using System.Management.Automation;
 
 namespace Isams.BatchApi.PWSH.Commands
 {
-    [Cmdlet(VerbsCommon.Get, "SchoolForms")]
+    [Cmdlet(VerbsCommon.Get, "IsamsSchoolForm")]
     [OutputType(typeof(Form))]
-    public class GetSchoolFormsCommand : GetIsamsCommand
+    public class GetIsamsSchoolFormCommand : GetIsamsCommand
     {
         protected override Method Method => Method.School_GetSchoolForms;
         protected override void ProcessRecord()
