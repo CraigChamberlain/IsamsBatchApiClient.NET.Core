@@ -5,9 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Isams.BatchApiClient.Core.DTO.Filters;
 using Isams.BatchApiClient.Core.Errors;
-using Isams.BatchApiClient.Core.Requests;
 using Polly;
 
 namespace Isams.BatchApiClient.Core.Services
@@ -35,10 +33,10 @@ namespace Isams.BatchApiClient.Core.Services
         };
 
         private readonly HttpClient _client;
-        private readonly string _methodRoot;
+        protected readonly string _methodRoot;
         private readonly Polly.Retry.AsyncRetryPolicy<HttpResponseMessage> _policy;
 
-        private HttpServices(HttpClient client, string apiRoot, Polly.Retry.AsyncRetryPolicy<HttpResponseMessage> retryPolicy)
+        protected HttpServices(HttpClient client, string apiRoot, Polly.Retry.AsyncRetryPolicy<HttpResponseMessage> retryPolicy)
         {
             _client = client ?? throw new ArgumentNullException(nameof(client));
             _policy = retryPolicy ?? throw new ArgumentNullException(nameof(retryPolicy));
@@ -65,40 +63,6 @@ namespace Isams.BatchApiClient.Core.Services
         }
 
         /// <summary>
-        /// Factory method to create <see cref="HttpServices"/> instance.
-        /// </summary>
-        /// <param name="apiRoot">The domain of your iSAMS instance e.g. "https://your-school.isams.cloud". Use the helper method <see cref="ValidateApiRoot(string)"/> to check format.</param>
-        /// <param name="maxRetry">The number of times to retry a request which fails with a transient error.</param>
-        /// <param name="retrySleepDurationProvider">A funtion to determine the period of incremental retries in the case of a retryable failure.</param>
-        /// <param name="client">An optional <see cref="HttpClient"/> instance.  If this is ommited one will be enstantiated.</param>
-        /// <returns><see cref="HttpServices"/>.</returns>
-        public static HttpServices CreateHttpServices(
-                string apiRoot,
-                int maxRetry = 5,
-                Func<int, TimeSpan> retrySleepDurationProvider = null,
-                HttpClient client = null)
-        {
-            if (client is null)
-            {
-                client = new HttpClient();
-            }
-
-            if (retrySleepDurationProvider is null)
-            {
-                retrySleepDurationProvider = defaultSleepDurationProvider;
-            }
-
-            var policy =
-                Policy
-                    .Handle<HttpRequestException>()
-                    .Or<RecoverableException>()
-                    .OrResult<HttpResponseMessage>(r => httpStatusCodesWorthRetrying.Contains(r.StatusCode))
-                    .WaitAndRetryAsync(maxRetry, retrySleepDurationProvider);
-
-            return new HttpServices(client, apiRoot, policy);
-        }
-
-        /// <summary>
         /// Helper to determine if ApiRoot matches required pattern.
         /// </summary>
         /// <param name="apiRoot">The ApiRoot you intend to validate.</param>
@@ -108,17 +72,7 @@ namespace Isams.BatchApiClient.Core.Services
             return baseUrlRegex.IsMatch(apiRoot);
         }
 
-        /// <summary>
-        /// Helper to produce a complete and valid Url by appending the given an Api key as a query string.
-        /// </summary>
-        /// <param name="key">The Api key for the endpoint you wish to target. e.g. "A25F7D3B-5CF5-4DAC-A33B-3305562261C2".</param>
-        /// <returns>The Api root appended by the key. e.g. "https://your-school.isams.cloud/api/batch/1.0/xml.ashx?apiKey=A25F7D3B-5CF5-4DAC-A33B-3305562261C2".</returns>
-        public string ComposeUrl(string key)
-        {
-            return _methodRoot + key;
-        }
-
-        public async Task<Stream> PostRequestAsync(string url, StreamContent body = null)
+        protected async Task<Stream> PostRequestAsync(string url, StreamContent body = null)
         {
             var message = await _policy.ExecuteAsync(async () =>
                 {
@@ -145,37 +99,26 @@ namespace Isams.BatchApiClient.Core.Services
             return await message.Content.ReadAsStreamAsync();
         }
 
-        public async Task<Stream> PostRequestAsync(string url, Stream body)
+        protected async Task<Stream> PostRequestAsync(string url, Stream body)
         {
             return await PostRequestAsync(url, new StreamContent(body));
         }
 
-        public async Task<Collections.Isams> MethodRequestAsync(Method method, string key, Deserialiser deserialiser, RequestSeserialiser requestSeserialiser)
+        protected static Polly.Retry.AsyncRetryPolicy<HttpResponseMessage> CreateDefaultPolicy(
+            int maxRetry = 5,
+            Func<int, TimeSpan> retrySleepDurationProvider = null)
         {
-            return await MethodRequestAsync(new Filters(method), key, deserialiser, requestSeserialiser);
+            if (retrySleepDurationProvider is null)
+            {
+                retrySleepDurationProvider = defaultSleepDurationProvider;
+            }
+
+            return Policy
+                    .Handle<HttpRequestException>()
+                    .Or<RecoverableException>()
+                    .OrResult<HttpResponseMessage>(r => httpStatusCodesWorthRetrying.Contains(r.StatusCode))
+                    .WaitAndRetryAsync(maxRetry, retrySleepDurationProvider);
         }
 
-        public async Task<Collections.Isams> MethodRequestAsync(string key, Deserialiser deserialiser, StreamContent body = null)
-        {
-            var url = ComposeUrl(key);
-            var response = await PostRequestAsync(url, body);
-#if DEBUG
-            StreamReader sr = new (response);
-            var s = sr.ReadToEnd();
-            response.Position = 0;
-#endif
-
-            // TODO try catch? Should not happen unless fatal error?
-            // Maybe should be popped in an error rather than an exception.
-            var isams = deserialiser.DeserialiseStream(response);
-            return isams;
-        }
-
-        public async Task<Collections.Isams> MethodRequestAsync(Filters filters, string key, Deserialiser deserialiser, RequestSeserialiser requestSeserialiser)
-        {
-            MemoryStream ms = new ();
-            requestSeserialiser.SerialiseToStream(ms, filters);
-            return await MethodRequestAsync(key, deserialiser, new StreamContent(ms));
-        }
     }
 }

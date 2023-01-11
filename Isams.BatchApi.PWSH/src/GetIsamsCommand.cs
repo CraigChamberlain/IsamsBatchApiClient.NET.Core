@@ -5,16 +5,26 @@ using Isams.BatchApiClient.Core.DTO.Filters;
 
 namespace Isams.BatchApi.PWSH.Commands
 {
+    [Cmdlet("Get", "GetIsamsCommand", DefaultParameterSetName = "OAuth")]
     public abstract class GetIsamsCommand : PSCmdlet
     {
         // TODO can they be readonly fields?
-        [Parameter(Mandatory = true, Position = 0)]
+        
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ApiKey")]
         public string ApiKey { get; set; }
 
-        [Parameter(Mandatory = true, Position = 1)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ApiKey")]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "OAuth")]
         public string IsamsInstance { get; set; }
 
-        private HttpServices _dataService;
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "OAuth")]
+        public string ClientId { get; set; }
+
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "OAuth")]
+        public string ClientSecret { get; set; }
+
+        private ApiKeyHttpServices _apiKeyDataService;
+        private OAuthHttpServices _oAuthDataService;
         private Deserialiser _deserialiser;
         private RequestSeserialiser _serialiser;
         protected abstract Method Method { get; }
@@ -23,12 +33,26 @@ namespace Isams.BatchApi.PWSH.Commands
 
         protected override void BeginProcessing()
         {
-            _dataService = HttpServices.CreateHttpServices(IsamsInstance);
+            if (this.ParameterSetName.Equals("ApiKey")){
+                _apiKeyDataService = ApiKeyHttpServices.CreateServices(IsamsInstance);
+            }
+            else
+            {
+                _oAuthDataService = OAuthHttpServices.CreateServices(IsamsInstance, ClientId, ClientSecret);
+            }
             _deserialiser = Deserialiser.CreateDeserialiser();
             _serialiser = RequestSeserialiser.CreateSerialiser();
             try
             {
-                _isams = _dataService.MethodRequestAsync(Method, ApiKey, _deserialiser, _serialiser).Result;
+                if (this.ParameterSetName.Equals("ApiKey"))
+                {
+                    _isams = _apiKeyDataService.MethodRequestAsync(Method, ApiKey, _deserialiser, _serialiser).Result;
+                }
+                else
+                {
+                    _isams = _oAuthDataService.MethodRequestAsync(Method, _deserialiser, _serialiser).Result;
+                }
+                
             }
             catch (Exception e) {
 
