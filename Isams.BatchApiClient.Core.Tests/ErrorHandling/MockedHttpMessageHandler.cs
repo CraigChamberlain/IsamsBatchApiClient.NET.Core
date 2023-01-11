@@ -3,31 +3,33 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Isams.BatchApiClient.Tests;
-public class MockedHttpMessageHandler : HttpMessageHandler
+namespace Isams.BatchApiClient.Tests
 {
-    private readonly Func<Task<HttpResponseMessage>> _responseFactory;
-    private readonly HttpResponseMessage _httpResponseMessage;
-
-    public MockedHttpMessageHandler(HttpResponseMessage httpResponseMessage)
+    public class MockedHttpMessageHandler : HttpMessageHandler
     {
-        _httpResponseMessage = httpResponseMessage;
-    }
+        private readonly Func<Task<HttpResponseMessage>> _responseFactory;
+        private readonly HttpResponseMessage _httpResponseMessage;
 
-    public MockedHttpMessageHandler(Func<Task<HttpResponseMessage>> responseFactory)
-    {
-        _responseFactory = responseFactory ?? throw new ArgumentNullException(nameof(responseFactory));
-    }
-
-    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-    {
-        cancellationToken.ThrowIfCancellationRequested();
-        if (_responseFactory != null)
+        public MockedHttpMessageHandler(HttpResponseMessage httpResponseMessage)
         {
-            return await _responseFactory.Invoke();
+            _httpResponseMessage = httpResponseMessage;
         }
 
-        return _httpResponseMessage;
-    }
+        public MockedHttpMessageHandler(Func<Task<HttpResponseMessage>> responseFactory)
+        {
+            _responseFactory = responseFactory ?? throw new ArgumentNullException(nameof(responseFactory));
+        }
 
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (_responseFactory != null)
+            {
+                return await _responseFactory.Invoke();
+            }
+
+            return _httpResponseMessage;
+        }
+
+    }
 }
