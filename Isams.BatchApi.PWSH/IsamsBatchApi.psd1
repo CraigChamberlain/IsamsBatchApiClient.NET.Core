@@ -30,7 +30,8 @@ CompanyName = 'Craig Chamberlain - IT'
 Copyright = '(c) Craig Chamberlain. All rights reserved.'
 
 # Description of the functionality provided by this module
-# Description = ''
+Description = 'This is a free community authored tool to provide access to the Core/Free section of the iSAMS BatchAPI.
+It will be of most use to System Administratiors of Schools for reconciling AD with Staff and Pupil data held in iSAMS.'
 
 # Minimum version of the PowerShell engine required by this module
 PowerShellVersion = '7.0'
@@ -73,19 +74,21 @@ FunctionsToExport = @()
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @(
-        "Get-CurrentStaff",
-        "Get-CurrentPupils",
-        "Get-Siblings",
-        "Get-AcademicHouses",
-        "Get-BoardingHouses",
-        "Get-SchoolForms",
-        "Get-PastoralTutors",
-        "Get-SchoolDivisions",
-        "Get-SchoolTerms",
-        "Get-AllYears")
+        "Get-IsamsCurrentStaff",
+        "Get-IsamsCurrentPupil",
+        "Get-IsamsSibling",
+        "Get-IsamsAcademicHouse",
+        "Get-IsamsBoardingHouse",
+        "Get-IsamsSchoolForm",
+        "Get-IsamsPastoralTutor",
+        "Get-IsamsSchoolDivision",
+        "Get-IsamsSchoolTerm",
+        "Get-IsamsSchoolYear",
+        "Connect-Isams",
+        "Disconnect-Isams")
 
 # Variables to export from this module
-VariablesToExport = '*'
+VariablesToExport = "IsamsBatchApi"
 
 # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
 AliasesToExport = @()

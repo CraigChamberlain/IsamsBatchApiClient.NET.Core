@@ -18,6 +18,29 @@ Use like this:
 
     Get-IsamsCurrentPupil -ApiKey "0A1C996B-8E74-4388-A3C4-8DA1E30ADA57"  -IsamsInstance "https://school.isams.cloud"  
 
+
+You will get better performance if you connect to your instance as the module caches the client:
+
+    Connect-Isams -DefaultApiKey "0A1C996B-8E74-4388-A3C4-8DA1E30ADA57"  -IsamsInstance "https://school.isams.cloud" 
+
+And can then proceed without providing a ````ApiKey```` or ````IsamsInstance````
+
+    Get-IsamsCurrentPupil
+
+Further calls can be given a different ````ApiKey```` but the ````IsamsInstance```` will typically be ignored.
+
+    Get-IsamsSibling -ApiKey "1B3G996B-9F74-4399-A3C4-0BA1E30ADG76"
+
+I have also implemented an OAuth authentication Model which will be the default and recommended method.  However, it is as yet untested
+
+    Connect-Isams -ClientID "Your_ID" -ClientSecret "Your_SECRET" -IsamsInstance "https://school.isams.cloud" 
+
+This should ideally be disconnected to invalidate the Bearer Token when using the OAuth method.
+
+    Disconnect-Isams
+
+N.B. it is not possible to have connections to two instances open at once.  Connecting again when already connected will automatically close the previous connection. 
+
 ## Endpoints in this current free edition are limited to:
   
 ### Human Resources
@@ -36,7 +59,3 @@ Use like this:
   - Get-IsamsSchoolDivision
   - Get-IsamsSchoolTerm
 
-## Road-Map
-
-- Implement OAuth
-- In the PWSH Module, use an Environmental variable to cache the iSAMS Client and default API key.  

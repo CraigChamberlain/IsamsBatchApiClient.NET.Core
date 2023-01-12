@@ -32,14 +32,26 @@ namespace Isams.BatchApiClient.Core.Services
            HttpStatusCode.GatewayTimeout, // 504
         };
 
-        private readonly HttpClient _client;
+        protected readonly HttpClient _client;
         protected readonly string _methodRoot;
+
+        protected readonly RequestSeserialiser _requestSeserialiser;
+
+        protected readonly Deserialiser _deserialiser;
+        
         private readonly Polly.Retry.AsyncRetryPolicy<HttpResponseMessage> _policy;
 
-        protected HttpServices(HttpClient client, string apiRoot, Polly.Retry.AsyncRetryPolicy<HttpResponseMessage> retryPolicy)
+        protected HttpServices(
+            HttpClient client, 
+            string apiRoot, 
+            Polly.Retry.AsyncRetryPolicy<HttpResponseMessage> retryPolicy,
+            Deserialiser deserialiser,
+            RequestSeserialiser requestSeserialiser)
         {
             _client = client ?? throw new ArgumentNullException(nameof(client));
             _policy = retryPolicy ?? throw new ArgumentNullException(nameof(retryPolicy));
+            _deserialiser = deserialiser ?? throw new ArgumentNullException(nameof(deserialiser));
+            _requestSeserialiser = requestSeserialiser ?? throw new ArgumentNullException(nameof(requestSeserialiser));
 
             if (apiRoot is null)
             {
