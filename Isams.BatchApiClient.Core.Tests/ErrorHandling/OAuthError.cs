@@ -8,7 +8,10 @@ namespace Isams.BatchApiClient.Core.Tests.ErrorHandling
         [Fact]
         public void ErrorHandling()
         {
-            var x = OAuthHttpServices.CreateServices("https://developerdemo.isams.cloud", "IDIDIID", "SECRETSECRET");
+            var x = OAuthHttpServices.CreateServices( 
+                KeyData.Host, 
+                KeyData.ClientID, 
+                KeyData.ClientSecret );
 
         }
     }
