@@ -34,11 +34,12 @@ namespace Isams.BatchApiClient.Core.Services
 
         protected readonly HttpClient _client;
         protected readonly string _methodRoot;
+        protected readonly string _apiRoot;
 
         protected readonly RequestSeserialiser _requestSeserialiser;
 
         protected readonly Deserialiser _deserialiser;
-        
+
         private readonly Polly.Retry.AsyncRetryPolicy<HttpResponseMessage> _policy;
 
         protected HttpServices(
@@ -71,8 +72,20 @@ namespace Isams.BatchApiClient.Core.Services
                     "Use the helper method ValidateApiRoot to validate your root.");
             }
 
-            _methodRoot = match.Value + api + "xml.ashx?apiKey=";
+            _apiRoot = match.Value;
+            _methodRoot = match.Value + api + "xml.ashx";
         }
+
+        /// <summary>
+        /// Helper to produce a complete and valid Url by appending the given an Api key as a query string.
+        /// </summary>
+        /// <param name="key">The Api key for the endpoint you wish to target. e.g. "A25F7D3B-5CF5-4DAC-A33B-3305562261C2".</param>
+        /// <returns>The Api root appended by the key. e.g. "https://your-school.isams.cloud/api/batch/1.0/xml.ashx?apiKey=A25F7D3B-5CF5-4DAC-A33B-3305562261C2".</returns>
+        public string ComposeUrl(string key)
+        {
+            return _methodRoot + "?apiKey=" + key;
+        }
+
 
         /// <summary>
         /// Helper to determine if ApiRoot matches required pattern.

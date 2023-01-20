@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -23,6 +23,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Isams.BatchApiClient.Core\Isams.BatchApiClient.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientConnection\" />
   </ItemGroup>
 
 
