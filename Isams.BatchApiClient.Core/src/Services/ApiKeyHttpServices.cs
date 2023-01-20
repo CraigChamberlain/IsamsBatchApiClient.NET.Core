@@ -14,8 +14,9 @@ namespace Isams.BatchApiClient.Core.Services
     public class ApiKeyHttpServices : HttpServices
     {
         private ApiKeyHttpServices(
-            HttpClient client, 
-            string apiRoot, Polly.Retry.AsyncRetryPolicy<HttpResponseMessage> retryPolicy,
+            HttpClient client,
+            string apiRoot,
+            Polly.Retry.AsyncRetryPolicy<HttpResponseMessage> retryPolicy,
             Deserialiser deserialiser,
             RequestSeserialiser requestSeserialiser)
         : base(client, apiRoot, retryPolicy, deserialiser, requestSeserialiser)
@@ -42,11 +43,13 @@ namespace Isams.BatchApiClient.Core.Services
             {
                 client = new HttpClient();
             }
+
             if (deserialiser is null)
             {
                 deserialiser = Deserialiser.CreateDeserialiser();
             }
-             if (requestSeserialiser is null)
+
+            if (requestSeserialiser is null)
             {
                 requestSeserialiser = RequestSeserialiser.CreateSerialiser();
             }
@@ -55,22 +58,12 @@ namespace Isams.BatchApiClient.Core.Services
             var policy = CreateDefaultPolicy(maxRetry, retrySleepDurationProvider);
 
             return new ApiKeyHttpServices(
-                client, 
-                apiRoot, 
+                client,
+                apiRoot,
                 policy,
                 deserialiser,
                 requestSeserialiser
                 );
-        }
-
-        /// <summary>
-        /// Helper to produce a complete and valid Url by appending the given an Api key as a query string.
-        /// </summary>
-        /// <param name="key">The Api key for the endpoint you wish to target. e.g. "A25F7D3B-5CF5-4DAC-A33B-3305562261C2".</param>
-        /// <returns>The Api root appended by the key. e.g. "https://your-school.isams.cloud/api/batch/1.0/xml.ashx?apiKey=A25F7D3B-5CF5-4DAC-A33B-3305562261C2".</returns>
-        public string ComposeUrl(string key)
-        {
-            return _methodRoot + key;
         }
 
         public async Task<Collections.Isams> MethodRequestAsync(Method method, string key)

@@ -2,8 +2,8 @@ using System;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Isams.BatchApiClient.Core.DTO.Filters;
 using IdentityModel.Client;
+using Isams.BatchApiClient.Core.DTO.Filters;
 using Isams.BatchApiClient.Core.Requests;
 
 namespace Isams.BatchApiClient.Core.Services
@@ -17,13 +17,14 @@ namespace Isams.BatchApiClient.Core.Services
         private readonly string _clientId;
         private readonly string _clientSecret;
         private string _accessToken;
+        private string _methodUrl;
         private DateTime _tokenExpiry;
 
         private readonly TimeSpan _gracePeriod = new TimeSpan(50000000);
 
         private OAuthHttpServices(
-            HttpClient client, 
-            string apiRoot, 
+            HttpClient client,
+            string apiRoot,
             string clientID,
             string clientSecret,
             Polly.Retry.AsyncRetryPolicy<HttpResponseMessage> retryPolicy,
@@ -33,6 +34,7 @@ namespace Isams.BatchApiClient.Core.Services
         {
             _clientId = clientID;
             _clientSecret = clientSecret;
+            _methodUrl = base.ComposeUrl(clientID);
         }
 
         /// <summary>
@@ -57,11 +59,13 @@ namespace Isams.BatchApiClient.Core.Services
             {
                 client = new HttpClient();
             }
+
             if (deserialiser is null)
             {
                 deserialiser = Deserialiser.CreateDeserialiser();
             }
-             if (requestSeserialiser is null)
+
+            if (requestSeserialiser is null)
             {
                 requestSeserialiser = RequestSeserialiser.CreateSerialiser();
             }
@@ -70,14 +74,13 @@ namespace Isams.BatchApiClient.Core.Services
             var policy = CreateDefaultPolicy(maxRetry, retrySleepDurationProvider);
 
             var services = new OAuthHttpServices(
-                client, 
-                apiRoot, 
-                clientID, 
-                clientSecret, 
+                client,
+                apiRoot,
+                clientID,
+                clientSecret,
                 policy,
                 deserialiser,
-                requestSeserialiser
-                );
+                requestSeserialiser);
 
             await services.AcquireToken();
 
@@ -87,7 +90,7 @@ namespace Isams.BatchApiClient.Core.Services
         private async Task AcquireToken(){
             var request = new ClientCredentialsTokenRequest
                     {
-                        Address = _methodRoot + "/auth/connect/token",
+                        Address = _apiRoot + "/auth/connect/token",
                         ClientId = _clientId,
                         ClientSecret = _clientSecret,
                         Scope = "apiv1"
@@ -97,36 +100,38 @@ namespace Isams.BatchApiClient.Core.Services
             // TODO add retry policy?
             var response = await _client.RequestClientCredentialsTokenAsync(request);
 
-            if (response.IsError) 
+            if (response.IsError)
             {
                 throw new Exception(response.Error);
             }
 
             _accessToken = response.AccessToken;
             _tokenExpiry = requestTime.AddSeconds(response.ExpiresIn);
-            
+
+            _client.SetBearerToken(response.AccessToken);
         }
 
-        private async Task RevokeToken(){
+        private async Task RevokeToken()
+        {
 
-            if( TokenExpired() ){
+            if (this.TokenExpired())
+            {
                 return;
             }
 
             var response = await _client.RevokeTokenAsync(
                 new TokenRevocationRequest
                 {
-                                Address = _methodRoot + "/auth/connect/revocation",
+                                Address = _apiRoot + "/auth/connect/revocation",
                                 ClientId = _clientId,
                                 ClientSecret = _clientSecret,
 
                                 Token = _accessToken
-                }
-            );
+                });
 
             if (response.IsError) throw new Exception(response.Error);
-            
         }
+
         private Boolean TokenExpired(){
             return _tokenExpiry.Subtract(DateTime.Now) < _gracePeriod;
         }
@@ -139,13 +144,11 @@ namespace Isams.BatchApiClient.Core.Services
         public async Task<Collections.Isams> MethodRequestAsync(StreamContent body = null)
         {
             // Renew if required
-            if(TokenExpired()){
-                await AcquireToken();
+            if (this.TokenExpired()) {
+                await this.AcquireToken();
             }
 
-            body.Headers.Add("Authorization", "Bearer " + _accessToken);
-
-            var response = await PostRequestAsync(_methodRoot, body);
+            var response = await this.PostRequestAsync(_methodUrl, body);
 #if DEBUG
             StreamReader sr = new (response);
             var s = sr.ReadToEnd();
