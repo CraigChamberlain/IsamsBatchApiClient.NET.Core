@@ -31,7 +31,7 @@ Further calls can be given a different ````ApiKey```` but the ````IsamsInstance`
 
     Get-IsamsSibling -ApiKey "1B3G996B-9F74-4399-A3C4-0BA1E30ADG76"
 
-I have also implemented an OAuth authentication Model which will be the default and recommended method.  However, it is as yet untested
+I have also implemented an OAuth authentication Model which will be the default and recommended method as iSAMS deprecate the API Key Authentication system.
 
     Connect-Isams -ClientID "Your_ID" -ClientSecret "Your_SECRET" -IsamsInstance "https://school.isams.cloud" 
 
