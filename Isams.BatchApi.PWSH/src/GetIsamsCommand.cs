@@ -5,52 +5,53 @@ using Isams.BatchApiClient.Core.DTO.Filters;
 
 namespace Isams.BatchApi.PWSH.Commands
 {
-    [Cmdlet("Get", "GetIsamsCommand", DefaultParameterSetName = "OAuth")]
+    [Cmdlet("Get", "GetIsamsCommand", DefaultParameterSetName = Constants.OAUTH)]
     public abstract class GetIsamsCommand : PSCmdlet
     {
         // TODO can they be readonly fields?
         
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ApiKey")]
+        [Parameter(Position = 0, ParameterSetName = Constants.API_KEY)]
         public string ApiKey { get; set; }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ApiKey")]
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "OAuth")]
+        [Parameter(Position = 1, ParameterSetName = Constants.API_KEY)]
         public string IsamsInstance { get; set; }
 
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "OAuth")]
-        public string ClientId { get; set; }
-
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "OAuth")]
-        public string ClientSecret { get; set; }
-
         private ApiKeyHttpServices _apiKeyDataService;
-        private OAuthHttpServices _oAuthDataService;
-        private Deserialiser _deserialiser;
-        private RequestSeserialiser _serialiser;
+
         protected abstract Method Method { get; }
         protected BatchApiClient.Core.Collections.Isams _isams;
 
 
         protected override void BeginProcessing()
         {
-            if (this.ParameterSetName.Equals("ApiKey")){
-                _apiKeyDataService = ApiKeyHttpServices.CreateServices(IsamsInstance);
-            }
-            else
-            {
-                _oAuthDataService = OAuthHttpServices.CreateServices(IsamsInstance, ClientId, ClientSecret);
-            }
-            _deserialiser = Deserialiser.CreateDeserialiser();
-            _serialiser = RequestSeserialiser.CreateSerialiser();
+            var state = (ModuleState)SessionState.PSVariable.GetValue(Constants.stateVariable);
+        
             try
             {
-                if (this.ParameterSetName.Equals("ApiKey"))
+                if (
+                    this.ParameterSetName == Constants.API_KEY ||  
+                    state is not null && state.ConnectionModel == ConnectionModel.API_KEY )
                 {
-                    _isams = _apiKeyDataService.MethodRequestAsync(Method, ApiKey, _deserialiser, _serialiser).Result;
+                    if(state is null || state.ApiKeyDataServices is null){
+                        _apiKeyDataService = ApiKeyHttpServices.CreateServices(IsamsInstance);
+                    }
+                    else {
+                        _apiKeyDataService = state.ApiKeyDataServices;
+                    }
+                    if(string.IsNullOrEmpty(ApiKey)){
+                        ApiKey = state.DefaultApiKey;
+                    }
+                    _isams = _apiKeyDataService.MethodRequestAsync(Method, ApiKey).Result;
                 }
                 else
                 {
-                    _isams = _oAuthDataService.MethodRequestAsync(Method, _deserialiser, _serialiser).Result;
+                    if(state is null || state.OAuthHttpServices is null){
+                        throw new Exception("Use Connect-Isams prior to using in OAuth Mode");
+                    }
+                    else {
+                        _isams = state.OAuthHttpServices.MethodRequestAsync(Method).Result;
+                    }
+                    
                 }
                 
             }

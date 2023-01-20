@@ -1,4 +1,5 @@
-﻿using Isams.BatchApiClient.Core.Services;
+﻿using System.Threading.Tasks;
+using Isams.BatchApiClient.Core.Services;
 using Xunit;
 
 namespace Isams.BatchApiClient.Core.Tests.ErrorHandling
@@ -8,10 +9,9 @@ namespace Isams.BatchApiClient.Core.Tests.ErrorHandling
         [Fact]
         public void ErrorHandling()
         {
-            var x = OAuthHttpServices.CreateServices( 
-                KeyData.Host, 
-                KeyData.ClientID, 
-                KeyData.ClientSecret );
+            var x = OAuthHttpServices.AsyncCreateServices(KeyData.Host,
+                KeyData.ClientID,
+                KeyData.ClientSecret);
 
         }
     }
