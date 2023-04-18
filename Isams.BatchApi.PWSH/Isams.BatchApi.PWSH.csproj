@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <PackageId>IsamsBatchApi</PackageId>
-    <Version>0.0.3</Version>
+    <Version>0.0.4</Version>
     <Authors>Craig Chamberlain</Authors>
     <Company>Craig Chamberlain IT</Company>
     <Product>iSAMS Batch API Connector</Product>

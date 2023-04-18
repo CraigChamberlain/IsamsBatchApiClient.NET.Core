@@ -46,25 +46,26 @@ namespace Isams.BatchApi.PWSH.Commands
                 else
                 {
                     if(state is null || state.OAuthHttpServices is null){
-                        throw new Exception("Use Connect-Isams prior to using in OAuth Mode");
+                        var e = new Exception("Use Connect-Isams prior to using in OAuth Mode");
+                        ThrowTerminatingError(new ErrorRecord(e, e.Message, 0, state));
                     }
                     else {
                         _isams = state.OAuthHttpServices.MethodRequestAsync(Method).Result;
                     }
                     
                 }
-                
+                if (_isams is null)
+                {
+                    var e = new Exception("Error returning result from API, root is null");
+                    ThrowTerminatingError(new ErrorRecord(e, e.Message, 0, state));
+                }
+
             }
             catch (Exception e) {
 
-                WriteWarning(e.Message);
+                WriteError(new ErrorRecord(e,"UnknownError",0, state));
             }
-            
-            if (_isams is null)
-            {
-                WriteWarning("Error returning result from API, root is null");
-            }
-
+    
             base.BeginProcessing();
         }
     }

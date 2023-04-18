@@ -1,18 +1,37 @@
 <iSAMS>
   <PupilManager>
     <CurrentPupils>
-      <Pupil Id="2538" PersonGuid="29981916-C5A7-485E-AD04-1F3A568583EE">
-        <SchoolCode>PRE0002339SUF</SchoolCode>
-        <SchoolId>145629077495</SchoolId>
-        <Title/>
-        <Forename>Brian</Forename>
-        <Surname>Eno</Surname>
-        <Middlename>Peter George</Middlename>
-        <Initials>B P G</Initials>
-        <Preferredname>Brian</Preferredname>
-        <Fullname>Brian Eno</Fullname>
+      <Pupil Id="710" PersonId="1068" PersonGuid="35f2a20a-1534-40d8-9d18-2504390356d1" DivisionId="11" AcademicHouseId="101" BoardingHouseId="12">
+        <UPN>P473368326012</UPN>
+        <SchoolCode>SIM009</SchoolCode>
+        <SchoolId>4733683260</SchoolId>
+        <UserCode>GEORGEBENSON6650023213</UserCode>
+        <UserName>BensHP</UserName>
+        <Title>Mr</Title>
+        <Forename>George</Forename>
+        <Surname>Benson</Surname>
+        <Middlename>Peter James</Middlename>
+        <Initials>GB</Initials>
+        <Preferredname>George</Preferredname>
+        <Fullname>George Benson</Fullname>
         <Gender>M</Gender>
-        <DOB>1948-05-15T00:00:00</DOB>
+        <DOB>2000-11-02T00:00:00</DOB>
+        <AcademicHouse>Grenville</AcademicHouse>
+        <BoardingHouse>Sheriff</BoardingHouse>
+        <Form>12/BBN</Form>
+        <NCYear>10</NCYear>
+        <DivisionName>Sixth Form</DivisionName>
+        <EmailAddress>george.benson@email.com</EmailAddress>
+        <MobileNumber>07908241229</MobileNumber>
+        <PupilType>Boarder</PupilType>
+        <EnrolmentDate>2015-11-02T00:00:00</EnrolmentDate>
+        <EnrolmentTerm>Term 2</EnrolmentTerm>
+        <EnrolmentSchoolYear>2015</EnrolmentSchoolYear>
+        <FamilyId>523</FamilyId>
+        <Nationalities>British,Pakistani</Nationalities>
+        <Languages>English, Urdu</Languages>
+        <Tutor>JVK1616126505196816</Tutor>
+        <Ethnicity>White, British</Ethnicity>
       </Pupil>
     </CurrentPupils>
   </PupilManager>

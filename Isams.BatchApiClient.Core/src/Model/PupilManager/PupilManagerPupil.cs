@@ -15,6 +15,12 @@ namespace Isams.BatchApiClient.Core.Model.PupilManager
         public string PersonGuid { get; set; }
 
         /// <summary>
+        /// The auto-generated Id of the person.
+        /// </summary>
+        [XmlAttribute]
+        public string PersonId { get; set; }
+
+        /// <summary>
         /// The Unique Pupil Number (UPN) is a number that identifies each learner in England.
         /// </summary>
         public string UPN { get; set; }
