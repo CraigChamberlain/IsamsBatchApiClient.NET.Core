@@ -42,7 +42,7 @@ namespace Isams.BatchApiClient.Core.Services
 
             if (!errors.ContainsKey("Title") || !errors.ContainsKey("Description"))
             {
-                return new Exception("ApiError with unexpected format");
+                return new Exception("API originated error with unexpected format");
             }
 
             if (errors["Title"] == "Unknown Error" && (
@@ -50,6 +50,10 @@ namespace Isams.BatchApiClient.Core.Services
                  errors["Description"].StartsWith("Lock request time out period exceeded.")))
             {
                 return new RecoverableException(errors["Title"], errors["Description"]);
+            }
+            if (errors["Title"] == "Unknown Error")
+            {
+                return new Exception($"Unknown API originated error :{System.Environment.NewLine}{errors["Description"]}");
             }
 
             return new Exception($"{errors["Title"]}:{System.Environment.NewLine}{errors["Description"]}");
