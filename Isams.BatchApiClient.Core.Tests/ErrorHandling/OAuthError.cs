@@ -16,7 +16,7 @@ namespace Isams.BatchApiClient.Core.Tests.ErrorHandling
                 KeyData.ClientID,
                 KeyData.ClientSecret);
 
-            var isams = await x.MethodRequestAsync(DTO.Filters.Method.School_GetAcademicHouses);
+            var isams = await x.MethodRequestAsync(DTO.Filters.Method.Pupil_GetCurrentPupils);
 
             x.DisposeAsync().AsTask().Wait();
 

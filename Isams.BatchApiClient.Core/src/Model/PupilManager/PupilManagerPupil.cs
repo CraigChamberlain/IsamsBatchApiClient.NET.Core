@@ -31,6 +31,16 @@ namespace Isams.BatchApiClient.Core.Model.PupilManager
         public string SchoolId { get; set; }
 
         /// <summary>
+        /// The user code of this student.
+        /// </summary>
+        public string UserCode { get; set; }
+
+        /// <summary>
+        /// The username of this student.
+        /// </summary>
+        public string UserName { get; set; }
+
+        /// <summary>
         /// The title of this student.
         /// </summary>
         public string Title { get; set; }

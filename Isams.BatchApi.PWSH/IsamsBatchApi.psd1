@@ -12,7 +12,7 @@
 RootModule = 'Isams.BatchApi.PWSH.dll'
 
 # Version number of this module.
-ModuleVersion = '0.0.4'
+ModuleVersion = '0.0.5'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -34,7 +34,7 @@ Description = 'This is a free community authored tool to provide access to the C
 It will be of most use to System Administratiors of Schools for reconciling AD with Staff and Pupil data held in iSAMS.'
 
 # Minimum version of the PowerShell engine required by this module
-PowerShellVersion = '7.0'
+PowerShellVersion = '7.6'
 
 # Name of the PowerShell host required by this module
 # PowerShellHostName = ''
@@ -76,6 +76,8 @@ FunctionsToExport = @()
 CmdletsToExport = @(
         "Get-IsamsCurrentStaff",
         "Get-IsamsCurrentPupil",
+        "Get-IsamsAlumni",
+        "Get-IsamsApplicant",
         "Get-IsamsSibling",
         "Get-IsamsAcademicHouse",
         "Get-IsamsBoardingHouse",

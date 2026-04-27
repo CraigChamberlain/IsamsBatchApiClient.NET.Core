@@ -1,34 +1,46 @@
 <iSAMS>
-  <HRManager>
-    <CurrentStaff>
-      <StaffMember Id="380" PersonId="3041" PersonGuid="D2481057-A441-4287-9B2A-0DF82C52EA97">
-        <Initials>&#x20;</Initials>
-        <UserCode>JXB28529081319808003</UserCode>
-        <Title/>
-        <Forename>&#x20;</Forename>
-        <MiddleNames/>
-        <Surname>&#x20;</Surname>
-        <FullName>  &#x20;</FullName>
-        <NameInitials/>
-        <PreferredName>test</PreferredName>
-        <Salutation> &#x20;</Salutation>
-        <Gender/>
-        <SchoolEmailAddress/>
-        <SchoolMobileNumber/>
-        <PersonalMobileNumber/>
-        <TeachingStaff>1</TeachingStaff>
-        <Divisions>
-          <Division Id="1">
-            <Name>Pre Prep School</Name>
-          </Division>
-          <Division Id="2">
-            <Name>Prep School</Name>
-          </Division>
-          <Division Id="3">
-            <Name>Senior School</Name>
-          </Division>
-        </Divisions>
-      </StaffMember>
-    </CurrentStaff>
-  </HRManager>
+	<HRManager>
+		<CurrentStaff>
+			<StaffMember Id="84" PersonId="1484" PersonGuid="35f2a20a-1534-40d8-9d18-2504390356d1">
+				<PreviousMISId>SE6</PreviousMISId>
+				<Initials>JJMS</Initials>
+				<UserCode>User4733683265425277</UserCode>
+				<UserName>JMSmith</UserName>
+				<Title>Mr</Title>
+				<Forename>John</Forename>
+				<MiddleNames>James Michael</MiddleNames>
+				<Surname>Smith</Surname>
+				<FullName>James Smith</FullName>
+				<NameInitials>JS</NameInitials>
+				<PreferredName>Jim</PreferredName>
+				<Salutation>Mr. J Smith</Salutation>
+				<DOB>1985-10-30T00:00:00</DOB>
+				<Gender>M</Gender>
+				<SchoolEmailAddress>john.smith@theschool.com</SchoolEmailAddress>
+				<SchoolMobileNumber>07712345678</SchoolMobileNumber>
+				<PersonalMobileNumber>07876543210</PersonalMobileNumber>
+				<TeachingStaff>1</TeachingStaff>
+				<LeavingDate>2013-05-27T00:00:00</LeavingDate>
+				<Divisions>
+					<Division Id="1">
+						<Name>Pre Prep School</Name>
+					</Division>
+					<Division Id="2">
+						<Name>Prep School</Name>
+					</Division>
+					<Division Id="3">
+						<Name>Senior School</Name>
+					</Division>
+				</Divisions>
+				<Roles>
+					<Role Id="211">
+						<Name>Teacher</Name>
+					</Role>
+					<Role Id="212">
+						<Name>OG</Name>
+					</Role>
+				</Roles>
+			</StaffMember>
+		</CurrentStaff>
+	</HRManager>
 </iSAMS>

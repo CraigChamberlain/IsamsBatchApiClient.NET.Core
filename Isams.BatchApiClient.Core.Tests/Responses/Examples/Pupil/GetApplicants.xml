@@ -1,0 +1,30 @@
+<iSAMS>
+  <PupilManager>
+    <Applicants>
+		<Pupil Id="691" PersonId="1068" PersonGuid="35f2a20a-1534-40d8-9d18-2504390356d1">
+			<UPN>P124733683260</UPN>
+			<SchoolId>14733683260</SchoolId>
+			<Title>Mr</Title>
+			<Forename>George</Forename>
+			<Surname>Benson</Surname>
+			<Middlename>Peter James</Middlename>
+			<Initials>GB</Initials>
+			<Preferredname>George</Preferredname>
+			<Fullname>George Benson</Fullname>
+			<Gender>M</Gender>
+			<DOB>2005-06-22T00:00:00</DOB>
+			<FamilyId>512</FamilyId>
+			<AdmissionsStatus>Enquiry</AdmissionsStatus>
+			<SchoolCode>SIM009</SchoolCode>
+			<EnrolmentSchoolYear>2018</EnrolmentSchoolYear>
+			<EnrolmentNCYear>12</EnrolmentNCYear>
+			<EnrolmentDate>2018-09-05T00:00:00</EnrolmentDate>
+			<EnrolmentTerm>Autumn</EnrolmentTerm>
+			<IsReAdmission>0</IsReAdmission>
+			<Ethnicity>White, British</Ethnicity>
+			<CurrentSchoolId>21</CurrentSchoolId>
+			<RegisteredDate>2021-09-01T00:00:00</RegisteredDate>
+		</Pupil>
+    </Applicants>
+  </PupilManager>
+</iSAMS>

@@ -1,0 +1,33 @@
+<iSAMS>
+  <PupilManager>
+    <Alumni>
+		<Pupil Id="691" PersonId="1068" PersonGuid="35f2a20a-1534-40d8-9d18-2504390356d1">
+			<UPN>P120623863347</UPN>
+			<SchoolId>10623863347</SchoolId>
+			<UserCode>GEORGEBENSON6650023213</UserCode>
+			<UserName>BensHP</UserName>
+			<Title>Mr</Title>
+			<Forename>George</Forename>
+			<Surname>Benson</Surname>
+			<Middlename>Peter James</Middlename>
+			<Initials>GB</Initials>
+			<Preferredname>George</Preferredname>
+			<Fullname>George Benson</Fullname>
+			<Gender>M</Gender>
+			<DOB>1998-06-22T00:00:00</DOB>
+			<EmailAddress>george.benson@gmail.com</EmailAddress>
+			<LeavingDate>2016-02-04T00:00:00</LeavingDate>
+			<LeavingTerm>Term 3</LeavingTerm>
+			<LeavingSchoolYear>2016</LeavingSchoolYear>
+			<FamilyId>512</FamilyId>
+			<SchoolCode>SIM009</SchoolCode>
+			<LeavingAcademicHouse>Green</LeavingAcademicHouse>
+			<LeavingBoardingHouse>Atlas House</LeavingBoardingHouse>
+			<Ethnicity>White, British</Ethnicity>
+			<LeavingReason>Relocated</LeavingReason>
+			<FutureSchoolId>15</FutureSchoolId>
+			<FutureSchoolType>Grammar</FutureSchoolType>
+		</Pupil>
+    </Alumni>
+  </PupilManager>
+</iSAMS>

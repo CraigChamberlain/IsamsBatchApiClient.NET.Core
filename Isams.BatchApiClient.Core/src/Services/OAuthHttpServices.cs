@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
-using IdentityModel.Client;
+using Duende.IdentityModel.Client;
 using Isams.BatchApiClient.Core.DTO.Filters;
 using Isams.BatchApiClient.Core.Requests;
 
@@ -132,7 +132,7 @@ namespace Isams.BatchApiClient.Core.Services
             if (response.IsError) throw new Exception(response.Error);
         }
 
-        private Boolean TokenExpired(){
+        private Boolean TokenExpired() {
             return _tokenExpiry.Subtract(DateTime.Now) < _gracePeriod;
         }
 
@@ -164,8 +164,8 @@ namespace Isams.BatchApiClient.Core.Services
         public async Task<Collections.Isams> MethodRequestAsync(Filters filters)
         {
             MemoryStream ms = new ();
-            _requestSeserialiser.SerialiseToStream(ms, filters);
-            return await MethodRequestAsync(new StreamContent(ms));
+            this._requestSeserialiser.SerialiseToStream(ms, filters);
+            return await this.MethodRequestAsync(new StreamContent(ms));
         }
 
         public ValueTask DisposeAsync()

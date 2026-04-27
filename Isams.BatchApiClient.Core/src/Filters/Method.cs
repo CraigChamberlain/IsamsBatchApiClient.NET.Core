@@ -12,5 +12,7 @@ namespace Isams.BatchApiClient.Core.DTO.Filters
         School_GetSchoolDivisions,
         School_GetSchoolTerms,
         School_GetAllYears,
+        Pupil_GetAlumni,
+        Pupil_GetApplicants
     }
 }
