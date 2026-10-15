@@ -6,13 +6,8 @@ namespace IsamsBatchApiClient.PWSH.Commands
 {
     [Cmdlet("Connect", "Isams", DefaultParameterSetName = Constants.OAUTH)]
     public class ConnectIsamsCommand : PSCmdlet
-    {
-        // TODO can they be readonly fields?
+    {      
         
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = Constants.API_KEY )]
-        public string DefaultApiKey { get; set; }
-
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = Constants.API_KEY )]
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = Constants.OAUTH )]
         public string IsamsInstance { get; set; }
 
@@ -24,24 +19,17 @@ namespace IsamsBatchApiClient.PWSH.Commands
 
 
 
-        private ApiKeyHttpServices _apiKeyDataService;
         private OAuthHttpServices OAuthDataService;
 
         protected override void BeginProcessing()
         {
-            if (ParameterSetName == Constants.API_KEY ){
-                _apiKeyDataService = ApiKeyHttpServices.CreateServices(IsamsInstance);
-            }
-            else
-            {
-                OAuthDataService = OAuthHttpServices.AsyncCreateServices(IsamsInstance, ClientId, ClientSecret).Result;
-            }
+            
+            OAuthDataService = OAuthHttpServices.AsyncCreateServices(IsamsInstance, ClientId, ClientSecret).Result;
+           
 
             var connectionModel = Enum.Parse<ConnectionModel>(ParameterSetName);
             var state = new ModuleState(
                 connectionModel,
-                DefaultApiKey,
-                _apiKeyDataService,
                 OAuthDataService        
             );
             
